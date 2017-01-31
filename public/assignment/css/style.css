@@ -10,9 +10,11 @@ html{
     height:100%;
 }
 body {
-    padding-top: 36px;
+    padding-top: 15px;
+    padding-bottom: 15px;
     overflow-x: hidden;
     height: 100%;
+    margin-bottom: 115px;
 }
 .list-group{
     margin-bottom:55px;
