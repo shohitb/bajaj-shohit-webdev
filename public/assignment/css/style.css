@@ -67,7 +67,7 @@ div#allign{
     margin-bottom: 50px;
 }
 
-a:focus, a:hover {
+a:hover {
     color: #23527c;
     text-decoration: none;
 }
