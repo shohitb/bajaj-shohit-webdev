@@ -1,21 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>Title</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="../css/style.css" rel="stylesheet"/>
-</head>
-<body>
+
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid bg-primary">
         <div>
-            <a class="navbar-brand glyphicon glyphicon-chevron-left" href="widget-list.html"></a>
+            <a class="navbar-brand glyphicon glyphicon-chevron-left" href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget"></a>
             <a class="navbar-brand pull-left">
                 Widget Edit
             </a>
-            <a class="navbar-brand glyphicon glyphicon-ok pull-right" href="widget-list.html">
+            <a class="navbar-brand glyphicon glyphicon-ok pull-right" ng-click="model.updateWidget(model.widget)">
             </a>
         </div>
     </div>
@@ -35,22 +26,20 @@
             </div>
             <div class="form-group">
                 <label for="url_id">URL</label>
-                <input id="url_id" type="url" class="form-control" value="http://youtube.com/hello.html">
+                <input ng-model="model.widget.url" id="url_id" type="url" class="form-control" value="http://youtube.com/hello.html">
             </div>
             <div class="form-group">
                 <label for="width_id">Width</label>
-                <input id="width_id" type="text" class="form-control" placeholder="100%">
+                <input ng-model="model.widget.width" id="width_id" type="text" class="form-control" placeholder="100%">
             </div>
-            <a class="btn btn-danger  btn-block" href="widget-list.html">Delete</a>
+            <a ng-click="model.deleteWidget(widget)" class="btn btn-danger  btn-block" href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">Delete</a>
         </form>
  </div>
 
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid bg-primary">
-        <a class="navbar-brand glyphicon glyphicon-user pull-right" href="../user/profile.html">
+        <a class="navbar-brand glyphicon glyphicon-user pull-right" href="#/user/{{model.userId}}">
         </a>
     </div>
 </nav>
-</body>
-</html>

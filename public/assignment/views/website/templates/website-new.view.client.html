@@ -1,0 +1,64 @@
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="row container-fluid bg-primary">
+        <div class="col-sm-4 hidden-xs">
+            <a class="glyphicon glyphicon-chevron-left navbar-brand pull-left" href="#/user/{{model.userId}}/website"></a>
+            <div class="navbar-header">
+            <a class="navbar-brand">Websites</a>
+            </div>
+            <a href="#/user/{{model.userId}}/website/new" class="glyphicon glyphicon-plus pull-right navbar-brand"></a>
+        </div>
+
+        <div class="col-sm-8">
+            <a href="#/user/{{model.userId}}/website" class="glyphicon glyphicon-chevron-left navbar-brand visible-xs"></a>
+            <a ng-click="model.createWebsite(website)" class="glyphicon glyphicon-ok pull-right navbar-brand"></a>
+            <div class="navbar-header">
+            <a class="navbar-brand no-left-padding no-left-margin">New Website</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="row container-fluid sb-extend-screen">
+    <div class="col-sm-4 hidden-xs sb-col-border sb-full-screen">
+        <ul class="list-group">
+            <li class="list-group-item" ng-repeat="website in model.websites">
+                <a href="#/user/{{model.userId}}/website/{{website._id}}/page">
+                    {{website.name}}
+                </a>
+                <a href="#/user/{{model.userId}}/website/{{website._id}}" class="pull-right">
+                    <span class="glyphicon glyphicon-cog"></span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+
+
+    <div class="col-sm-8 sb-full-screen">
+        <div class="sb-form-padding">
+        <label for="Name">Name</label>
+        <input ng-model="website.name"
+               placeholder="Website Name"
+               class="form-control" id="Name"/>
+
+        <label for="website-description">Description</label>
+        <textarea ng-model="website.description"
+                  placeholder="Website Description"
+                  class="form-control"
+                  rows="4"
+                  id="website-description"></textarea>
+
+        <a ng-click="model.createWebsite(website)" class="btn btn-primary btn-block">
+            Create
+        </a>
+        </div>
+    </div>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid bg-primary">
+        <a class="glyphicon glyphicon-user pull-right navbar-brand pull-right" href="#/user/{{model.userId}}">
+        </a>
+    </div>
+</nav>

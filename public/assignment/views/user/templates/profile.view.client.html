@@ -1,0 +1,47 @@
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid bg-primary">
+        <a class="navbar-brand glyphicon glyphicon-ok pull-right" href="#/user/{{model.user._id}}" ng-click="model.update(model.user)"></a>
+        <a class="navbar-brand">Profile</a>
+    </div>
+</nav>
+
+    <div class="container">
+
+        <div class="alert alert-danger" ng-show="model.error" role="alert">
+            {{model.error}}
+        </div>
+
+        <div class="alert alert-success" ng-show="model.message" role="alert">
+            {{model.message}}
+        </div>
+
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input ng-model="model.user.username" type="text" class="form-control" id="username" value="shohit">
+            </div>
+            <div class="form-group">
+                <label for="email">Email address</label>
+                <input ng-model="model.user.email" type="email" class="form-control" id="email" value="shohitb@ccs.neu.edu">
+            </div>
+            <div class="form-group">
+                <label for="first-name">First Name</label>
+                <input ng-model="model.user.firstName" type="text" class="form-control" id="first-name" value="shohit">
+            </div>
+            <div class="form-group">
+                <label for="last-name">Last Name</label>
+                <input ng-model="model.user.lastName" type="text" class="form-control" id="last-name" value="bajaj">
+            </div>
+
+        <a class="btn btn-primary btn-block"
+           href="#/user/{{model.user._id}}/website">Websites</a>
+        <a class="btn btn-danger  btn-block"
+           href="#/login">Logout</a>
+    </div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid bg-primary">
+        <a class="glyphicon glyphicon-user pull-right navbar-brand pull-right" href="#/user/{{model.user._id}}">
+        </a>
+    </div>
+</nav>

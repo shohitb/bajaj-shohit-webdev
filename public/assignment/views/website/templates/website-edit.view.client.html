@@ -1,0 +1,62 @@
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="row container-fluid bg-primary">
+        <div class="col-sm-4 hidden-xs">
+            <a class="glyphicon glyphicon-chevron-left navbar-brand pull-left" href="#/user/{{model.userId}}/website"></a>
+            <div class="navbar-header">
+                <a href="#" class="navbar-brand">Websites</a>
+            </div>
+            <a href="#/user/{{model.userId}}/website/new" class="glyphicon glyphicon-plus pull-right navbar-brand"></a>
+        </div>
+
+        <div class="col-sm-8">
+            <a href="#/user/{{model.userId}}/website" class="glyphicon glyphicon-chevron-left navbar-brand visible-xs"></a>
+            <a ng-click="model.updateWebsite(model.website)" class="glyphicon glyphicon-ok pull-right navbar-brand"></a>
+            <div class="navbar-header">
+                <a class="navbar-brand no-left-padding no-left-margin" href="#">Edit Website</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="row container-fluid sb-extend-screen">
+    <div class="col-sm-4 hidden-xs sb-col-border sb-full-screen">
+        <ul class="list-group">
+            <li ng-repeat="website in model.websites" class="list-group-item">
+                <a href="#/user/{{model.userId}}/website/{{website._id}}/page">
+                    {{website.name}}
+                </a>
+                <a href="#/user/{{model.userId}}/website/{{website._id}}" class="pull-right">
+                    <span class="glyphicon glyphicon-cog"></span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="col-sm-8">
+        <div class="sb-form-padding">
+            <div class="form-group">
+                <label for="WebsiteName">Website Name</label>
+                <input ng-model="model.website.name" id="WebsiteName" type="text" class="form-control" value="Blogger">
+            </div>
+            <div class="form-group">
+                <label for="details">Website Description</label>
+                <textarea ng-model="model.website.description" class="form-control" id="details" rows="4">Up until May 1, 2010, Blogger allowed users to publish blogs on other hosts, via FTP. All such blogs had (or still have) to be moved to Google's own servers, with domains other than blogspot.com allowed via custom
+                </textarea>
+            </div>
+            <a ng-click="model.updateWebsite(model.website)" class="btn btn-primary btn-block">
+                Update
+            </a>
+            <a ng-click="model.deleteWebsite()" class="btn btn-danger btn-block">
+                Delete
+            </a>
+        </div>
+    </div>
+
+    <nav class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container-fluid bg-primary">
+            <a class="glyphicon glyphicon-user pull-right navbar-brand pull-right" href="#/user/{{model.userId}}">
+            </a>
+        </div>
+    </nav>
+</div>

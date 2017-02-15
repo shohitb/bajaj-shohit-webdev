@@ -69,3 +69,14 @@ a:hover {
     color: #23527c;
     text-decoration: none;
 }
+
+textarea.form-control {
+    height: auto;
+    margin-bottom: 8px;
+}
+
+.sb-widget-padding{
+    margin-bottom: 20px;
+    text-align: justify;
+    text-justify: inter-word;
+}

@@ -1,0 +1,24 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid bg-primary">
+        <div>
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget" class="navbar-brand glyphicon glyphicon-chevron-left">
+            </a>
+        </div>
+        <div>
+            <a class="navbar-brand">
+                Widget Edit
+            </a>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid"
+     ng-include="model.getEditorTemplateUrl(model.widget.widgetType)">
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid bg-primary">
+        <a class="navbar-brand glyphicon glyphicon-user pull-right" href="#/user/{{model.userId}}">
+        </a>
+    </div>
+</nav>
