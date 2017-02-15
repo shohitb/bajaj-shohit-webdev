@@ -21,7 +21,7 @@
             "findWebsiteById": findWebsiteById,
             "deleteWebsite": deleteWebsite,
             "updateWebsite": updateWebsite,
-            "findAllWebsitesForUser": findAllWebsitesForUser
+            "findWebsitesByUser": findWebsitesByUser
         };
         return api;
 
@@ -58,7 +58,7 @@
             websites.push(website);
         }
 
-        function findAllWebsitesForUser(userId) {
+        function findWebsitesByUser(userId) {
             var sites = [];
             for (var w in websites) {
                 if (websites[w].developerId === userId) {

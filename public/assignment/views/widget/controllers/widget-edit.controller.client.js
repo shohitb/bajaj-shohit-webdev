@@ -16,6 +16,7 @@
         vm.getEditorTemplateUrl = getEditorTemplateUrl;
         vm.deleteWidget = deleteWidget;
         vm.updateWidget = updateWidget;
+        vm.getOptions = WidgetService.getOptions()
 
         function init() {
             vm.widget = WidgetService.findWidgetById(vm.widgetId);
@@ -24,8 +25,8 @@
         init();
 
         function getEditorTemplateUrl(type) {
-            console.log(type);
-            return 'views/widget/templates/editors/widget-' + vm.widget.widgetType + '-editor.view.client.html';
+            //console.log(type);
+            return 'views/widget/templates/editors/widget-' + type + '-editor.view.client.html';
         }
 
         function deleteWidget() {

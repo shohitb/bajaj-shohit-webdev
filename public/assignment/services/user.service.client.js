@@ -49,6 +49,7 @@
             "findUserByCredentials": findUserByCredentials,
             "findUserById": findUserById,
             "createUser": createUser,
+            "deleteUser": deleteUser,
             "findUserByUsername": findUserByUsername
         };
         return api;
@@ -59,7 +60,8 @@
                 if (user._id === userId) {
                     users[u].firstName = newUser.firstName;
                     users[u].lastName = newUser.lastName;
-                    return user;
+                    users[u].email = newUser.email;
+                    return users[u];
                 }
             }
             return null;
@@ -73,6 +75,15 @@
                 }
             }
             return null;
+        }
+
+        function deleteUser(uid) {
+            for (var u in users) {
+                var user = users[u];
+                if (user._id === uid) {
+                    users.splice(u, 1);
+                }
+            }
         }
 
         function findUserByCredentials(username, password) {

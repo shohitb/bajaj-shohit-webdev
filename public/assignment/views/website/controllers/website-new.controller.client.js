@@ -13,7 +13,7 @@
         vm.createWebsite = createWebsite;
 
         function init() {
-            vm.websites = WebsiteService.findAllWebsitesForUser(vm.userId);
+            vm.websites = WebsiteService.findAllWebsitesByUser(vm.userId);
         }
 
         init();

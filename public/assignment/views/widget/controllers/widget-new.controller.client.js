@@ -8,35 +8,17 @@
         .module("WebAppMaker")
         .controller("WidgetNewController", WidgetNewController);
 
-    // function WidgetNewController($routeParams, $location, WidgetService) {
-    //     var vm = this;
-    //     vm.userId = $routeParams.uid;
-    //     vm.websiteId= $routeParams.wid;
-    //     vm.pageId= $routeParams.pid;
-    //     vm.createWidget = createWidget;
-    //
-    //     function init() {
-    //         vm.widgets = WidgetService.findWidgetByPageId(vm.pageId);
-    //     }
-    //     init();
-    //
-    //     function createWidget (widget) {
-    //         WidgetService.createWidget(vm.pageId, widget);
-    //         //vm.websites = WebsiteService.findPageByWebsiteId(vm.userId);
-    //         $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget/");
-    //     }
-    // }
 
     function WidgetNewController(WidgetService, $routeParams, $location) {
         var vm = this;
         vm.userId = $routeParams.uid;
         vm.pageId = $routeParams.pid;
-        vm.websiteId = $routeParams.wid
+        vm.websiteId = $routeParams.wid;
         vm.widgetId = $routeParams.wgid;
         vm.createWidget = createWidget;
 
         function init() {
-            vm.widgets = WidgetService.findWidgetByPageId(vm.pageId);
+            vm.widgets = WidgetService.findWidgetsByPageId(vm.pageId);
         }
 
         init();
@@ -69,7 +51,5 @@
         }
     }
 
-    // WidgetService.createWidget(vm.pageId, newWidget);
-    // $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget/" + newWidget._id);
 
 })();

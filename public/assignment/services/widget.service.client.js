@@ -31,17 +31,23 @@
             {"_id": "788", "widgetType": "HEADER", "pageId": "544", "text": "Lorem ipsum"}
         ];
 
+        var options = [1, 2, 3, 4, 5, 6];
+
         var api = {
-            "findAllWidgets": findAllWidgets,
-            "findWidgetByPageId": findWidgetByPageId,
+            "findWidgetsByPageId": findWidgetsByPageId,
             "findWidgetById": findWidgetById,
             "createWidget": createWidget,
             "deleteWidget": deleteWidget,
-            "updateWidget": updateWidget
+            "updateWidget": updateWidget,
+            "getOptions": getOptions
         };
         return api;
 
-        function findWidgetByPageId(pageId) {
+        function getOptions() {
+            return options;
+        }
+
+        function findWidgetsByPageId(pageId) {
             var wg = [];
             for (var w in widgets) {
                 if (widgets[w].pageId === pageId) {
@@ -51,9 +57,6 @@
             return wg;
         }
 
-        function findAllWidgets(pageId) {
-            return widgets;
-        }
 
         function findWidgetById(widgetId) {
             for (var w in widgets) {
