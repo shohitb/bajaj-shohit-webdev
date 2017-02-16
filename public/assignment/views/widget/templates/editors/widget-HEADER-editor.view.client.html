@@ -6,7 +6,7 @@
             <a class="navbar-brand">
                 Widget Edit
             </a>
-            <a class="navbar-brand glyphicon glyphicon-ok pull-right" ng-click="model.updateWidget(model.widget)">
+            <a class="navbar-brand glyphicon glyphicon-ok pull-right" href ng-click="model.updateWidget(model.widget)">
             </a>
         </div>
     </div>
@@ -24,7 +24,6 @@
             </div>
             <div class="form-group">
                 <label for="size_id">Size</label>
-                <!--<input ng-model="model.widget.size" id="size_id" type="number" class="form-control">-->
                 <select id="size_id" class="form-control" ng-model="model.widget.size"
                         ng-options="c for c in model.getOptions"></select>
             </div>

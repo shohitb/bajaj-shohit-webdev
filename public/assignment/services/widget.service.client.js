@@ -1,4 +1,4 @@
-/**
+    /**
  * Created by shohitbajaj on 12/02/17.
  */
 
@@ -28,7 +28,7 @@
                 "url": "https://youtu.be/AM2Ivdi9c4E"
             },
             {"_id": "789", "widgetType": "HTML", "pageId": "321", "text": "Lorem ipsum"},
-            {"_id": "788", "widgetType": "HEADER", "pageId": "544", "text": "Lorem ipsum"}
+            {"_id": "788", "widgetType": "HEADER", "pageId": "544", "text": "Lorem ipsum", "size": 4}
         ];
 
         var options = [1, 2, 3, 4, 5, 6];

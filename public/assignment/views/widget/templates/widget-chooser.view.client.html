@@ -14,40 +14,19 @@
 </nav>
 
 
-<!--<div class="container-fluid">-->
-    <!--<ul class="list-group">-->
-        <!--<li class="list-group-item" ng-repeat="widget in model.widgets">-->
-        <!--<a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}">-->
-            <!--{{widget.widgetType}}-->
-        <!--</a>-->
-        <!--</li>-->
-    <!--</ul>-->
-<!--</div>-->
-
-
-<!--<div class="container-fluid">-->
-    <!--<ul class="list-group">-->
-        <!--<li class="list-group-item" role="presentation">-->
-            <!--<a href="">Header</a></li>-->
-        <!--<li class="list-group-item" role="presentation"><a href="#">HTML</a></li>-->
-        <!--<li class="list-group-item" role="presentation"><a href="widget-IMAGE.view.client.html">Image</a></li>-->
-        <!--<li class="list-group-item" role="presentation"><a href="widget-YOUTUBE.view.client.html">Youtube</a></li>-->
-    <!--</ul>-->
-<!--</div>-->
-
 <div class="container-fluid">
     <ul class="list-group">
         <li class="list-group-item">
-            <a ng-click="model.createWidget('HEADER')">Header</a>
+            <a href ng-click="model.createWidget('HEADER')">Header</a>
         </li>
         <li class="list-group-item">
-            <a ng-click="model.createWidget('IMAGE')">Image</a>
+            <a href ng-click="model.createWidget('IMAGE')">Image</a>
         </li>
         <li class="list-group-item">
-            <a ng-click="model.createWidget('YOUTUBE')">Youtube</a>
+            <a href ng-click="model.createWidget('YOUTUBE')">Youtube</a>
         </li>
         <li class="list-group-item">
-            <a ng-click="model.createWidget('HTML')">HTML</a>
+            <a href ng-click="model.createWidget('HTML')">HTML</a>
         </li>
     </ul>
 </div>
