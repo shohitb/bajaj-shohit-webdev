@@ -11,18 +11,17 @@
 
     function WidgetNewController(WidgetService, $routeParams, $location) {
         var vm = this;
-        vm.userId = $routeParams.uid;
-        vm.pageId = $routeParams.pid;
-        vm.websiteId = $routeParams.wid;
-        vm.widgetId = $routeParams.wgid;
         vm.createWidget = createWidget;
 
         function init() {
+            vm.userId = $routeParams.uid;
+            vm.pageId = $routeParams.pid;
+            vm.websiteId = $routeParams.wid;
+            vm.widgetId = $routeParams.wgid;
             vm.widgets = WidgetService.findWidgetsByPageId(vm.pageId);
         }
 
         init();
-
 
         function createWidget(widgetType) {
             newWidget = {};

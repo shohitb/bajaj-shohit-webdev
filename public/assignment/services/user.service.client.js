@@ -106,7 +106,7 @@
                     lastName: user.lastName,
                     email: user.email,
                     _id: (new Date()).getTime().toString()
-                }
+                };
             users.push(newuser);
             return newuser;
         }
