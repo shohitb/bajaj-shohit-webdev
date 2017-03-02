@@ -13,15 +13,23 @@
 
         function init() {
             vm.userId = $routeParams.uid;
-            vm.websites = WebsiteService.findWebsitesByUser(vm.userId);
+            var promise = WebsiteService.findWebsitesByUser(vm.userId)
+                .success(function (websites) {
+                    vm.websites = websites;
+                });
         }
 
         init();
 
         function createWebsite(website) {
-            WebsiteService.createWebsite(vm.userId, website);
-            //vm.websites = WebsiteService.findAllWebsitesForUser(vm.userId);
-            $location.url("/user/" + vm.userId + "/website");
+            WebsiteService
+                .createWebsite(vm.userId, website)
+                .success(function (website) {
+                    $location.url("/user/" + vm.userId + "/website");
+                })
+                .error(function () {
+                    alert("could not create website")
+                });
         }
     }
 })();

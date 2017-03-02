@@ -1,8 +1,8 @@
-
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid bg-primary">
         <div>
-            <a class="navbar-brand glyphicon glyphicon-chevron-left" href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget"></a>
+            <a class="navbar-brand glyphicon glyphicon-chevron-left"
+               href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget"></a>
             <a class="navbar-brand">
                 Widget Edit
             </a>
@@ -12,24 +12,26 @@
     </div>
 </nav>
 
-    <div class="container-fluid sb-form-padding">
-        <form>
-            <div class="form-group">
-                <label for="name_id">Name</label>
-                <input id="name_id" type="text" class="form-control" placeholder="Blog Post">
-            </div>
-            <div class="form-group">
-                <label for="text_id" >Text</label>
-                <input ng-model="model.widget.text" id="text_id" type="text" class="form-control" value="US senate will decide the fate of this new bill">
-            </div>
-            <div class="form-group">
-                <label for="size_id">Size</label>
-                <select id="size_id" class="form-control" ng-model="model.widget.size"
-                        ng-options="c for c in model.getOptions"></select>
-            </div>
-            <a ng-click="model.deleteWidget(widget)" class="btn btn-danger  btn-block" href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">Delete</a>
-        </form>
-    </div>
+<div class="container-fluid sb-form-padding">
+    <form>
+        <div class="form-group">
+            <label for="name_id">Name</label>
+            <input id="name_id" type="text" class="form-control" placeholder="Blog Post">
+        </div>
+        <div class="form-group">
+            <label for="text_id">Text</label>
+            <input ng-model="model.widget.text" id="text_id" type="text" class="form-control"
+                   value="US senate will decide the fate of this new bill">
+        </div>
+        <div class="form-group">
+            <label for="size_id">Size</label>
+            <select id="size_id" class="form-control" ng-model="model.widget.size"
+                    ng-options="c for c in model.getOptions"></select>
+        </div>
+        <a ng-click="model.deleteWidget(widget)" class="btn btn-danger  btn-block"
+           href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">Delete</a>
+    </form>
+</div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid bg-primary">

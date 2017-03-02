@@ -2,7 +2,7 @@
  * Created by shohitbajaj on 11/02/17.
  */
 
-(function(){
+(function () {
     angular
         .module("WebAppMaker")
         .controller("PageListController", PageListController);
@@ -13,8 +13,11 @@
         function init() {
             vm.userId = $routeParams.uid;
             vm.websiteId = $routeParams.wid;
-            vm.pages = PageService.findPageByWebsiteId(vm.websiteId);
+            var promise = PageService.findPageByWebsiteId(vm.websiteId).success(function (pages) {
+                vm.pages = pages;
+            });
         }
+
         init();
 
     }

@@ -1,16 +1,18 @@
-
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="row container-fluid bg-primary">
         <div class="col-sm-4 hidden-xs">
-            <a class="glyphicon glyphicon-chevron-left navbar-brand pull-left" href="#/user/{{model.userId}}/website/{{model.websiteId}}/page"></a>
+            <a class="glyphicon glyphicon-chevron-left navbar-brand pull-left"
+               href="#/user/{{model.userId}}/website/{{model.websiteId}}/page"></a>
             <div class="navbar-header">
                 <a href="#" class="navbar-brand">Pages</a>
             </div>
-            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/new" class="glyphicon glyphicon-plus pull-right navbar-brand"></a>
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/new"
+               class="glyphicon glyphicon-plus pull-right navbar-brand"></a>
         </div>
 
         <div class="col-sm-8">
-            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page" class="glyphicon glyphicon-chevron-left navbar-brand visible-xs"></a>
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page"
+               class="glyphicon glyphicon-chevron-left navbar-brand visible-xs"></a>
             <a ng-click="model.updatePage(model.page)" class="glyphicon glyphicon-ok pull-right navbar-brand"></a>
             <div class="navbar-header">
                 <a class="navbar-brand no-left-padding no-left-margin" href="#">Edit Page</a>
@@ -26,7 +28,7 @@
                 <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}/widget">
                     {{page.name}}
                 </a>
-                <a href="#/user/{{model.userId}}/website/{{websiteId}}/page/{{pages._id}}" class="pull-right">
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}" class="pull-right">
                     <span class="glyphicon glyphicon-cog"></span>
                 </a>
             </li>
@@ -42,7 +44,7 @@
             <div class="form-group">
                 <label for="Title">Title</label>
                 <input ng-model="model.page.description" class="form-control" id="Title" rows="4"
-                          placeholder="Page Title">
+                       placeholder="Page Title">
             </div>
             <a ng-click="model.updatePage(model.page)" class="btn btn-primary btn-block">
                 Update

@@ -9,19 +9,24 @@
 
     function registerController(UserService, $location) {
         var vm = this;
-        vm.register = register;
+        vm.registerUser = registerUser;
 
-        function register(user) {
-            var loginUser = UserService.findUserByCredentials(user.username, user.password);
-            if (loginUser == null) {
-                loginUser = UserService.createUser(user);
-                $location.url('/user/' + loginUser._id);
-            }
-            else {
-                vm.error = "username already exists";
-            }
-
-
+        function registerUser(user) {
+            UserService
+                .findUserByUsername(user.username)
+                .success(function (user) {
+                    vm.error = "sorry that username is taken"
+                })
+                .error(function () {
+                    UserService
+                        .createUser(user)
+                        .success(function (user) {
+                            $location.url('/user/' + user._id);
+                        })
+                        .error(function () {
+                            vm.error = 'sorry could not register';
+                        });
+                });
         }
 
 

@@ -14,20 +14,29 @@
         vm.deleteUser = deleteUser;
 
         function init() {
-            vm.user = UserService.findUserById(userId);
+            vm.user = UserService.findUserById(userId)
+                .success(renderUser);
         }
+
         init();
 
-        function updateUser(newUser) {
-            var user = UserService.updateUser(userId, newUser);
-            if (user == null) {
-                vm.error = "unable to update user";
-            } else {
-                vm.message = "user successfully updated";
-            }
+        function renderUser(user) {
+            vm.user = user;
+            console.log(user);
         }
-        
-        function deleteUser (userId) {
+
+        function updateUser(newUser) {
+            UserService
+                .updateUser(userId, newUser)
+                .success(function (response) {
+                    vm.message = "user successfully updated"
+                })
+                .error(function () {
+                    vm.error = "unable to update user";
+                });
+        }
+
+        function deleteUser(userId) {
             UserService.deleteUser(userId);
             $location.url("/login");
         }

@@ -18,8 +18,17 @@
             vm.websiteId = $routeParams.wid;
             vm.pageId = $routeParams.pid;
             vm.widgetId = $routeParams.wgid;
-            vm.getOptions = WidgetService.getOptions();
-            vm.widget = WidgetService.findWidgetById(vm.widgetId);
+            var promise = WidgetService.getOptions().success(function (response) {
+                if (response != null) {
+                    vm.getOptions = response;
+                }
+                else {
+                    vm.error = "Failed to get options";
+                }
+            });
+            var promise = WidgetService.findWidgetById(vm.widgetId).success(function (widget) {
+                vm.widget = widget;
+            });
         }
 
         init();
@@ -29,13 +38,15 @@
         }
 
         function deleteWidget() {
-            WidgetService.deleteWidget(vm.widgetId);
-            $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget/");
+            WidgetService.deleteWidget(vm.widgetId).success(function () {
+                $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget/");
+            });
         }
 
         function updateWidget(widget) {
-            WidgetService.updateWidget(vm.widgetId, widget);
-            $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget/");
+            WidgetService.updateWidget(vm.widgetId, widget).success(function () {
+                $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget/");
+            });
         }
     }
 })();
