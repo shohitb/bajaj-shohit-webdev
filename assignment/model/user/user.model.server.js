@@ -62,14 +62,19 @@ module.exports = function () {
         if (websitesforUser.length == 0) {
             return UserModel.remove({_id: userId})
                 .then(function (response) {
-                    return response;
+                    if(response.result.n == 1 && response.result.ok == 1){
+                        return response;
+                    }
                 }, function (err) {
                     return err;
                 });
         }
         return model.WebsiteModel.cascadeDelete(websitesforUser.shift())
             .then(function (response) {
-                return deleteRecursively(websitesOfUser, userId);
+                if(response.result.n == 1 && response.result.ok == 1){
+                    return deleteRecursively(websitesOfUser, userId);
+                }
+
             }, function (err) {
                 return err;
             });

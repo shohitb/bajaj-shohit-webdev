@@ -86,14 +86,19 @@ module.exports = function () {
             // Delete the website
             return WebsiteModel.remove({_id: websiteId})
                 .then(function (response) {
-                    return response;
+                    if(response.result.n == 1 && response.result.ok == 1){
+                        return response;
+                    }
                 }, function (err) {
                     return err;
                 });
         }
         return model.PageModel.cascadeDelete(pagesforWebsite.shift())
             .then(function (response) {
-                return deleteRecursively(pagesOfWebsite, websiteId);
+                if(response.result.n == 1 && response.result.ok == 1){
+                    return deleteRecursively(pagesOfWebsite, websiteId);
+                }
+
             }, function (err) {
                 return err;
             });

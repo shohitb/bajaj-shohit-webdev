@@ -77,7 +77,10 @@ module.exports = function () {
             // Delete the page
             return PageModel.remove({_id: pageId})
                 .then(function (response) {
-                    return response;
+                    if(response.result.n == 1 && response.result.ok == 1){
+                        return response;
+                    }
+
                 }, function (err) {
                     return err;
                 });
@@ -85,8 +88,10 @@ module.exports = function () {
 
         return model.WidgetModel.cascadeDelete(widgetsforPage.shift())
             .then(function (response) {
-                console.log("deleterecursively2");
-                return deleteRecursively(widgetsforPage, pageId);
+                if(response.result.n == 1 && response.result.ok == 1){
+                    return deleteRecursively(widgetsforPage, pageId);
+                }
+
             }, function (err) {
                 return err;
             });
