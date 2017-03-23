@@ -36,7 +36,7 @@
         init();
 
         function getEditorTemplateUrl(type) {
-            console.log(type + "0000000");
+
             return 'views/widget/templates/editors/widget-' + type + '-editor.view.client.html';
         }
 

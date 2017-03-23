@@ -141,7 +141,7 @@ module.exports = function (app, model) {
                         WidgetModel
                             .findWidgetById(widgetId)
                             .then(function (newResponse) {
-                                console.log("in hereeeee2");
+
                                 pageId = newResponse._page;
                                 res.redirect("/assignment/#/user/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget");
 

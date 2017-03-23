@@ -77,7 +77,7 @@ module.exports = function (app, model) {
         PageModel
             .createPage(websiteId, newPage)
             .then(function (newPage) {
-                    console.log("lol");
+
                     res.send(newPage);
 
                 },

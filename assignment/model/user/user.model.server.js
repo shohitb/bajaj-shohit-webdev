@@ -38,7 +38,7 @@ module.exports = function () {
     }
 
     function findUserById(userId) {
-        //console.log(userId);
+
         return UserModel.findById(userId);
     }
 

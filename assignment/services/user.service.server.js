@@ -47,7 +47,7 @@ module.exports = function (app, model) {
     function updateUser(req, res) {
         var newUser = req.body;
         var id = req.body._id;
-        console.log(id + "uuuU");
+
 
         UserModel
             .updateUser(newUser, id)
@@ -117,7 +117,7 @@ module.exports = function (app, model) {
             .findUserByCredentials(username, password)
             .then(
                 function (users) {
-                    console.log(users);
+
                     if (users.length > 0) {
                         res.json(users[0]);
                     } else {
