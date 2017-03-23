@@ -58,8 +58,66 @@ module.exports = function () {
             );
     }
 
-    function deleteRecursively(websitesforUser, userId) {
-        if (websitesforUser.length == 0) {
+    // function deleteRecursively(websitesforUser, userId) {
+    //     if (websitesforUser.length == 0) {
+    //         return UserModel.remove({_id: userId})
+    //             .then(function (response) {
+    //                 if(response.result.n == 1 && response.result.ok == 1){
+    //                     return response;
+    //                 }
+    //             }, function (err) {
+    //                 return err;
+    //             });
+    //     }
+    //     return model.WebsiteModel.cascadeDelete(websitesforUser.shift())
+    //         .then(function (response) {
+    //             if(response.result.n == 1 && response.result.ok == 1){
+    //                 return deleteRecursively(websitesOfUser, userId);
+    //             }
+    //
+    //         }, function (err) {
+    //             return err;
+    //         });
+    // }
+
+
+
+
+    // function deleteUser(userId) {
+    //     return UserModel.findById({_id: userId})
+    //         .then(function (user) {
+    //             var websitesforUser = user.websites;
+    //             return deleteRecursively(websitesforUser, userId);
+    //         }, function (err) {
+    //             return err;
+    //         });
+    // }
+
+    function findUserByUsername(username) {
+        return UserModel.find({
+            username: username
+        });
+    }
+
+    function deleteUser(userId) {
+        // Perform cascade delete to delete the associated websites
+        // The websites will in turn delete the associated pages
+        // The page delete will in turn delete the associated widgets
+        // Perform a recursive function delete since the queries
+        // are asynchronous
+        return UserModel.findById({_id: userId})
+            .then(function (user) {
+                var websitesOfUser = user.websites;
+                return recursiveDelete(websitesOfUser, userId);
+            }, function (err) {
+                return err;
+            });
+    }
+
+    function recursiveDelete(websitesOfUser, userId) {
+        if(websitesOfUser.length == 0){
+            // All websites of user successfully deleted
+            // Delete the user
             return UserModel.remove({_id: userId})
                 .then(function (response) {
                     if(response.result.n == 1 && response.result.ok == 1){
@@ -69,33 +127,14 @@ module.exports = function () {
                     return err;
                 });
         }
-        return model.WebsiteModel.cascadeDelete(websitesforUser.shift())
+
+        return model.WebsiteModel.deleteWebsiteAndChildren(websitesOfUser.shift())
             .then(function (response) {
                 if(response.result.n == 1 && response.result.ok == 1){
-                    return deleteRecursively(websitesOfUser, userId);
+                    return recursiveDelete(websitesOfUser, userId);
                 }
-
             }, function (err) {
                 return err;
             });
-    }
-
-
-
-
-    function deleteUser(userId) {
-        return UserModel.findById({_id: userId})
-            .then(function (user) {
-                var websitesforUser = user.websites;
-                return deleteRecursively(websitesforUser, userId);
-            }, function (err) {
-                return err;
-            });
-    }
-
-    function findUserByUsername(username) {
-        return UserModel.find({
-            username: username
-        });
     }
 };

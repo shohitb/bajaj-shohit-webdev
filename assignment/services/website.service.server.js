@@ -77,33 +77,32 @@ module.exports = function (app, model) {
     }
 
     function deleteWebsite(req, res) {
+        // var websiteId = req.params.websiteId;
+        // WebsiteModel
+        //     .deleteWebsite(websiteId)
+        //     .then(function (userId) {
+        //
+        //             res.sendStatus(200);
+        //
+        //         },
+        //         function (error) {
+        //             res.status(404).send("Cannot remove website from websites");
+        //         }
+        //     );
         var websiteId = req.params.websiteId;
         WebsiteModel
             .deleteWebsite(websiteId)
-            .then(function (userId) {
-
+            .then(function (response) {
+                if(response.result.n == 1 && response.result.ok == 1){
                     res.sendStatus(200);
-                    /*model.UserModel
-                     .findUserById(userId)
-                     .then(function(user) {
-                     console.log("sdhgdfg" + websiteId);
-                     var index = user.websites.indexOf(websiteId);
-                     //console.log("here");
-                     //console.log(index);
-                     user.websites.splice(index, 1);
-                     user.save();
-                     res.sendStatus(200);
-                     },
-                     function (error) {
-                     res.status(404).send("Cannot remove website from user");
-                     console.log(error);
-                     }
-                     );*/
-                },
-                function (error) {
-                    res.status(404).send("Cannot remove website from websites");
                 }
-            );
+                else{
+                    res.sendStatus(404);
+                }
+            }, function (err) {
+                res.sendStatus(404);
+            });
     }
+
 };
 

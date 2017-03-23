@@ -11,10 +11,11 @@ module.exports = function () {
         findAllWidgetsForPage: findAllWidgetsForPage,
         findWidgetById: findWidgetById,
         updateWidget: updateWidget,
-        deleteWidget: deleteWidget,
+        //deleteWidget: deleteWidget,
         reorderWidget: reorderWidget,
         setModel: setModel,
-        cascadeDelete: cascadeDelete
+        deleteWidget: deleteWidget,
+        deleteWidgetOfPage: deleteWidgetOfPage,
     };
     return api;
 
@@ -62,33 +63,33 @@ module.exports = function () {
                 });
     }
 
-    function deleteWidget(widgetId) {
-        // Delete the widget, its reference in the parent page and delete the image
-        // associated (if the widget is an IMAGE widget)
-        return WidgetModel.findById(widgetId).populate('_page').then(function (widget) {
-            widget._page.widgets.splice(widget._page.widgets.indexOf(widgetId), 1);
-            widget._page.save();
-            if (widget.type == "IMAGE") {
-                //deleteUploadedImage(widget.url);
-            }
-            return WidgetModel.remove({_id: widgetId});
-        }, function (err) {
-            return err;
-        });
-    }
+    // function deleteWidget(widgetId) {
+    //     // Delete the widget, its reference in the parent page and delete the image
+    //     // associated (if the widget is an IMAGE widget)
+    //     return WidgetModel.findById(widgetId).populate('_page').then(function (widget) {
+    //         widget._page.widgets.splice(widget._page.widgets.indexOf(widgetId), 1);
+    //         widget._page.save();
+    //         if (widget.type == "IMAGE") {
+    //             deleteUploadedImage(widget.url);
+    //         }
+    //         return WidgetModel.remove({_id: widgetId});
+    //     }, function (err) {
+    //         return err;
+    //     });
+    // }
 
-    function cascadeDelete(widgetId) {
-        // Delete the widget and the associated image (if present)
-        return WidgetModel.findById(widgetId)
-            .then(function (widget) {
-                if (widget.type == "IMAGE") {
-                    //deleteUploadedImage(widget.url);
-                }
-                return WidgetModel.remove({_id: widgetId});
-            }, function (err) {
-                return err;
-            });
-    }
+    // function cascadeDelete(widgetId) {
+    //     // Delete the widget and the associated image (if present)
+    //     return WidgetModel.findById(widgetId)
+    //         .then(function (widget) {
+    //             if (widget.type == "IMAGE") {
+    //                 deleteUploadedImage(widget.url);
+    //             }
+    //             return WidgetModel.remove({_id: widgetId});
+    //         }, function (err) {
+    //             return err;
+    //         });
+    // }
 
     // function reorderWidget(pageId, start, end) {
     //     console.log("sdfsdf");
@@ -262,6 +263,64 @@ module.exports = function () {
                 return err;
             });
     }
+
+    // function deleteUploadedImage(imageUrl) {
+    //     //Local helper function
+    //     if(imageUrl && imageUrl.search('http') == -1){
+    //         // Locally uploaded image
+    //         // Delete it
+    //         fs.unlink(publicDirectory+imageUrl, function (err) {
+    //             if(err){
+    //                 return;
+    //             }
+    //         });
+    //     }
+    // }
+
+
+    function deleteWidget(widgetId){
+
+        return WidgetModel.findById(widgetId).populate('_page').then(function (widget) {
+            widget._page.widgets.splice(widget._page.widgets.indexOf(widgetId),1);
+            widget._page.save();
+            if(widget.type == "IMAGE"){
+                deleteUploadedImage(widget.url);
+            }
+            return WidgetModel.remove({_id:widgetId});
+        }, function (err) {
+            return err;
+        });
+    }
+
+    // Clean up method
+    // Since we need to get rid of uploaded image for widgets of a page,
+    // This model has to be prepared to delete a widget and clean up the
+    // uploaded image if it is of type IMAGE
+    function deleteUploadedImage(imageUrl) {
+        // Local helper function
+        if(imageUrl && imageUrl.search('http') == -1){
+            // Locally uploaded image
+            // Delete it
+            fs.unlink(publicDirectory+imageUrl, function (err) {
+                if(err){
+                    return;
+                }
+            });
+        }
+    }
+    function deleteWidgetOfPage(widgetId) {
+        // Delete the widget and the associated image (if present)
+        return WidgetModel.findById(widgetId)
+            .then(function (widget) {
+                if(widget.type == "IMAGE"){
+                    deleteUploadedImage(widget.url);
+                }
+                return WidgetModel.remove({_id: widgetId});
+            }, function (err) {
+                return err;
+            });
+    }
+
 
 
 };
