@@ -76,14 +76,7 @@ module.exports = function () {
     }
 
 
-    // function deleteUser(userId) {
-    //     return UserModel
-    //         .remove({_id: userId})
-    //         .then(function() {
-    //             model.websiteModel
-    //                 .deleteWebsitesForUser(userId);
-    //         });
-    // }
+
 
     function deleteUser(userId) {
         return UserModel.findById({_id: userId})

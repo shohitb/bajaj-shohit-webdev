@@ -13,8 +13,7 @@
 
         function login(user) {
             var promise = UserService.findUserByCredentials(user.username, user.password);
-            // console.log(user);
-            //console.log(promise);
+
             promise
                 .success(function (user) {
                     var loginUser = user;

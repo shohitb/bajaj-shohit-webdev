@@ -10,12 +10,6 @@ module.exports = function (app, model) {
     app.post("/api/website/:websiteId/page", createPage);
     app.get("/api/page/:pageId", findPageById);
 
-    // var pages = [
-    //     {"_id": "321", "name": "Post 1", "websiteId": "456", "description": "Lorem"},
-    //     {"_id": "432", "name": "Post 2", "websiteId": "456", "description": "Lorem"},
-    //     {"_id": "543", "name": "Post 3", "websiteId": "456", "description": "Lorem"},
-    //     {"_id": "544", "name": "Post 4", "websiteId": "567", "description": "Lorem"}
-    // ];
 
     function findAllPagesForWebsite(req, res) {
 

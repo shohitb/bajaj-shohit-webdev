@@ -16,6 +16,5 @@ module.exports = function () {
         dateCreated: {type: Date, default: Date.now}
     }, {collection: 'user'});
 
-    //console.log("schema");
     return UserSchema;
 };

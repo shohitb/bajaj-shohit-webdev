@@ -15,7 +15,6 @@ module.exports = function () {
         reorderWidget: reorderWidget,
         setModel: setModel,
         cascadeDelete: cascadeDelete
-        //reorderWidget: reorderWidget
     };
     return api;
 
