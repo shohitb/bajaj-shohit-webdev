@@ -12,6 +12,7 @@
         vm.getEditorTemplateUrl = getEditorTemplateUrl;
         vm.deleteWidget = deleteWidget;
         vm.updateWidget = updateWidget;
+        vm.searchImage =searchImage;
 
         function init() {
             vm.userId = $routeParams.uid;
@@ -27,6 +28,7 @@
                 }
             });
             var promise = WidgetService.findWidgetById(vm.widgetId).success(function (widget) {
+                console.log(widget.type+"kkkk");
                 vm.widget = widget;
             });
         }
@@ -34,6 +36,7 @@
         init();
 
         function getEditorTemplateUrl(type) {
+            console.log(type+"0000000");
             return 'views/widget/templates/editors/widget-' + type + '-editor.view.client.html';
         }
 
@@ -47,6 +50,10 @@
             WidgetService.updateWidget(vm.widgetId, widget).success(function () {
                 $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget/");
             });
+        }
+
+        function searchImage() {
+            $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget/"+vm.widgetId+"/flickr");
         }
     }
 })();

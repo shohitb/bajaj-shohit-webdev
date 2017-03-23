@@ -27,11 +27,11 @@
 
         function createWidget(widgetType) {
             newWidget = {};
-            newWidget._id = (new Date()).getTime().toString();
-            newWidget.widgetType = widgetType;
+            //newWidget._id = (new Date()).getTime().toString();
+            newWidget.type = widgetType;
             newWidget.pageId = vm.pageId;
             switch (widgetType) {
-                case "HEADER":
+                case "HEADING":
                     newWidget.text = "Default Text";
                     newWidget.size = 3;
                     break;
@@ -46,9 +46,12 @@
                 case "HTML":
                     newWidget.text = "Default Text";
                     break;
+                case "TEXT":
+                    newWidget.text = "Default Text";
+                    break;
             }
-            WidgetService.createWidget(vm.pageId, newWidget).success(function () {
-                $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget/" + newWidget._id);
+            WidgetService.createWidget(vm.pageId, newWidget).success(function (widget) {
+                $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget/" + widget._id);
             });
         }
     }

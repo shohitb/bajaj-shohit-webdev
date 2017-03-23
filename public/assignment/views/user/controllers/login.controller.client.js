@@ -13,10 +13,17 @@
 
         function login(user) {
             var promise = UserService.findUserByCredentials(user.username, user.password);
+           // console.log(user);
+            //console.log(promise);
             promise
                 .success(function (user) {
                     var loginUser = user;
+                    console.log(user);
+                    //console.log(loginUser);
                     if (loginUser != null) {
+                        console.log(loginUser);
+                        console.log("hello");
+                        console.log(loginUser._id);
                         $location.url('/user/' + loginUser._id);
                     } else {
                         vm.error = 'user not found';

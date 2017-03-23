@@ -14,6 +14,7 @@
         vm.deleteUser = deleteUser;
 
         function init() {
+            console.log(userId+"ppppp");
             vm.user = UserService.findUserById(userId)
                 .success(renderUser);
         }
@@ -21,10 +22,14 @@
         init();
 
         function renderUser(user) {
+            //console.log("haveli");
+            console.log(user);
             vm.user = user;
         }
 
         function updateUser(newUser) {
+            console.log("jjjj");
+            console.log(newUser);
             UserService
                 .updateUser(userId, newUser)
                 .success(function (response) {

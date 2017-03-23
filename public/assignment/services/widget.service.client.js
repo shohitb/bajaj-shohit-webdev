@@ -15,6 +15,7 @@
             "createWidget": createWidget,
             "deleteWidget": deleteWidget,
             "updateWidget": updateWidget,
+            "updateWidgetOrder": updateWidgetOrder,
             "getOptions": getOptions
         };
         return api;
@@ -43,6 +44,12 @@
         function updateWidget(widgetId, widget) {
             return $http.put("/api/widget/" + widgetId, widget);
         }
-    }
 
+        // function updateWidgetOrder(pageId, startIndex, endIndex) {
+        //     return $http.put("/page/" + pageId + "/widget?initial=" + startIndex + "&final=" + endIndex);
+        // }
+        function updateWidgetOrder(pageId, startIndex, endIndex) {
+            return $http.put("/page/"+pageId+"/widget?initial="+startIndex+"&final="+endIndex);
+        }
+    }
 })();

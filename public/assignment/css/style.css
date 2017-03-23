@@ -42,6 +42,7 @@ div#allign{
     padding-bottom: 5px;
     border-bottom-left-radius: 5px;
     opacity: 0.7;
+    z-index:1;
 }
 
 .verticalLine {
@@ -79,4 +80,18 @@ textarea.form-control {
     margin-bottom: 20px;
     text-align: justify;
     text-justify: inter-word;
+}
+
+.youtube-widget {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    height: 0;
+}
+
+.youtube-widget iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    height: 100%;
 }
