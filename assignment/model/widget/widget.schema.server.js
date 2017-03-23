@@ -7,7 +7,7 @@ module.exports = function () {
     var mongoose = require("mongoose");
 
     var WidgetSchema = mongoose.Schema({
-        _page:  {type: mongoose.Schema.ObjectId, ref:"PageModel"},
+        _page: {type: mongoose.Schema.ObjectId, ref: "PageModel"},
         type: {type: String, enum: ['HEADING', 'IMAGE', 'YOUTUBE', 'HTML', 'TEXT']},
         name: String,
         text: String,
@@ -20,12 +20,12 @@ module.exports = function () {
         size: Number,
         class: String,
         icon: String,
-        position : Number,
+        position: Number,
         deletable: Boolean,
         formatted: Boolean,
         dateCreated: {type: Date, default: Date.now()},
         order: Number
-    },{collection: "widget"});
+    }, {collection: "widget"});
 
     return WidgetSchema;
 };

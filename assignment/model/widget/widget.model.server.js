@@ -23,7 +23,7 @@ module.exports = function () {
         model = _model;
     }
 
- function findAllWidgetsForPage(pageId){
+    function findAllWidgetsForPage(pageId) {
         return model.PageModel
             .findPageById(pageId)
             .then(function (page) {
@@ -36,8 +36,9 @@ module.exports = function () {
                 return err;
             });
     }
-     function getWidgetsRecursively(count, widgetsOfPage, widgetCollectionForPage) {
-        if(count == 0){
+
+    function getWidgetsRecursively(count, widgetsOfPage, widgetCollectionForPage) {
+        if (count == 0) {
             return widgetCollectionForPage;
         }
 
@@ -62,16 +63,16 @@ module.exports = function () {
                 });
     }
 
-    function deleteWidget(widgetId){
+    function deleteWidget(widgetId) {
         // Delete the widget, its reference in the parent page and delete the image
         // associated (if the widget is an IMAGE widget)
         return WidgetModel.findById(widgetId).populate('_page').then(function (widget) {
-            widget._page.widgets.splice(widget._page.widgets.indexOf(widgetId),1);
+            widget._page.widgets.splice(widget._page.widgets.indexOf(widgetId), 1);
             widget._page.save();
-            if(widget.type == "IMAGE"){
+            if (widget.type == "IMAGE") {
                 //deleteUploadedImage(widget.url);
             }
-            return WidgetModel.remove({_id:widgetId});
+            return WidgetModel.remove({_id: widgetId});
         }, function (err) {
             return err;
         });
@@ -81,7 +82,7 @@ module.exports = function () {
         // Delete the widget and the associated image (if present)
         return WidgetModel.findById(widgetId)
             .then(function (widget) {
-                if(widget.type == "IMAGE"){
+                if (widget.type == "IMAGE") {
                     //deleteUploadedImage(widget.url);
                 }
                 return WidgetModel.remove({_id: widgetId});
@@ -220,8 +221,8 @@ module.exports = function () {
     //         });
     // }
 
-    function createWidget(pageId,widget){
-        console.log(widget);
+    function createWidget(pageId, widget) {
+
         widget._page = pageId;
         return WidgetModel
             .find({"_page": pageId})
@@ -237,8 +238,7 @@ module.exports = function () {
                                     page.widgets.push(newWidget._id);
                                     page.save();
                                     newWidget.save();
-                                    console.log(newWidget._id);
-                                    console.log(newWidget);
+
                                     return newWidget;
                                 }, function (err) {
                                     res.sendStatus(404);
@@ -263,8 +263,6 @@ module.exports = function () {
                 return err;
             });
     }
-
-
 
 
 };

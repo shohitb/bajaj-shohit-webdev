@@ -26,7 +26,7 @@
         init();
 
         function getWidgetTemplateUrl(widgetType) {
-            console.log(widgetType+"oooooooo");
+
             var url = 'views/widget/templates/widget-' + widgetType + '.view.client.html';
             return url;
         }

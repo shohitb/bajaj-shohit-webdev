@@ -48,12 +48,12 @@ module.exports = function (app, model) {
                 });
     }
 
-    function deletePage(req, res){
+    function deletePage(req, res) {
         var pageId = req.params.pageId;
         PageModel
             .deletePage(pageId)
             .then(function (response) {
-                    res.sendStatus(200);
+                res.sendStatus(200);
             }, function (err) {
                 res.sendStatus(404);
             });
@@ -79,8 +79,7 @@ module.exports = function (app, model) {
     function createPage(req, res) {
         var newPage = req.body;
         var websiteId = req.params.websiteId;
-        console.log(newPage);
-        console.log(websiteId);
+
         PageModel
             .createPage(websiteId, newPage)
             .then(function (newPage) {

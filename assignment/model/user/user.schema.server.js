@@ -13,7 +13,7 @@ module.exports = function () {
         phone: String,
         email: String,
         websites: [{type: mongoose.Schema.Types.ObjectId, ref: 'WebsiteModel'}],
-        dateCreated: { type: Date, default: Date.now}
+        dateCreated: {type: Date, default: Date.now}
     }, {collection: 'user'});
 
     //console.log("schema");

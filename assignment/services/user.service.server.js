@@ -57,8 +57,7 @@ module.exports = function (app, model) {
 
     function createUser(req, res) {
         var newUser = req.body;
-        console.log(newUser);
-        console.log("yyyy");
+
         UserModel
             .createUser(newUser)
             .then(
@@ -74,10 +73,10 @@ module.exports = function (app, model) {
     function updateUser(req, res) {
         var newUser = req.body;
         var id = req.body._id;
-        console.log(id+"uuuU");
+        console.log(id + "uuuU");
 
         UserModel
-            .updateUser(newUser,id)
+            .updateUser(newUser, id)
             .then(
                 function (user) {
                     res.sendStatus(200);
@@ -91,8 +90,7 @@ module.exports = function (app, model) {
 
     function findUserById(req, res) {
         var userId = req.params.userId;
-        console.log("user id at finduser by id");
-        console.log(userId+"hrrrr");
+
         UserModel
             .findUserById(userId)
             .then(
@@ -118,16 +116,16 @@ module.exports = function (app, model) {
 
     function findUserByUsername(req, res) {
         var username = req.query.username;
-        console.log(username);
+
         UserModel
             .findUserByUsername(username)
             .then(
                 function (user) {
-                    console.log("dfsdfsdf");
-                    if (user.length > 0){
+
+                    if (user.length > 0) {
                         res.json(user);
                     }
-                    else{
+                    else {
                         res.sendStatus(404);
                     }
                 },

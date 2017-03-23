@@ -1,4 +1,4 @@
-(function() {
+(function () {
     angular
         .module('WebAppMaker')
         .directive('wbdvSortable', wbdvSortable);
@@ -7,11 +7,11 @@
     function wbdvSortable() {
         function link(scope, element, attributes, sortingController) {
             element.sortable({
-                start: function(event, ui){
+                start: function (event, ui) {
                     // Set the start index and make it available for ui item
                     ui.item.startPos = ui.item.index();
                 },
-                update: function(event, ui){
+                update: function (event, ui) {
                     var startIndex = ui.item.startPos;
                     var endIndex = ui.item.index();
                     sortingController.widgetsSort(startIndex, endIndex);
@@ -22,11 +22,13 @@
 
             });
         }
+
         return {
             link: link,
             controller: sortWidgets
         }
     }
+
     function sortWidgets(WidgetService, $routeParams) {
         var vm = this;
         vm.widgetsSort = widgetsSort;

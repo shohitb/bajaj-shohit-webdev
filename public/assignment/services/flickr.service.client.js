@@ -2,14 +2,14 @@
  * Created by shohitbajaj on 22/03/17.
  */
 
-(function(){
+(function () {
     angular
         .module("WebAppMaker")
-        .factory("FlickrService",FlickrService);
+        .factory("FlickrService", FlickrService);
 
     function FlickrService($http) {
         var api = {
-            "searchPhotos":searchPhoto
+            "searchPhotos": searchPhoto
         };
         return api;
 

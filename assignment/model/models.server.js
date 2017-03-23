@@ -46,8 +46,7 @@ module.exports = function () {
     WebsiteModel.setModel(model);
     UserModel.setModel(model);
     PageModel.setModel(model);
-    mongoose.connection.on('connected', function(){
-        console.log("Hi");
+    mongoose.connection.on('connected', function () {
     });
     return model;
 };

@@ -39,12 +39,12 @@ module.exports = function () {
                                 return newWebsite;
                             },
                             function (error) {
-                                console.log(error);
+                                return error;
                             }
                         );
                 },
                 function (error) {
-                    console.log(error);
+                    return error;
                 });
     }
 
@@ -71,8 +71,8 @@ module.exports = function () {
     }
 
     function deleteWebsite(websiteId) {
-        return WebsiteModel.findOne({_id:websiteId}).populate('_user').then(function (website) {
-            website._user.websites.splice(website._user.websites.indexOf(websiteId),1);
+        return WebsiteModel.findOne({_id: websiteId}).populate('_user').then(function (website) {
+            website._user.websites.splice(website._user.websites.indexOf(websiteId), 1);
             website._user.save();
             return cascadeDelete(websiteId);
         }, function (err) {
@@ -81,27 +81,27 @@ module.exports = function () {
     }
 
     function deleteRecursively(pagesforWebsite, websiteId) {
-        if(pagesforWebsite.length == 0){
+        if (pagesforWebsite.length == 0) {
             // All pages of website successfully deleted
             // Delete the website
             return WebsiteModel.remove({_id: websiteId})
                 .then(function (response) {
-                        return response;
+                    return response;
                 }, function (err) {
                     return err;
                 });
         }
         return model.PageModel.cascadeDelete(pagesforWebsite.shift())
             .then(function (response) {
-                    return deleteRecursively(pagesOfWebsite, websiteId);
+                return deleteRecursively(pagesOfWebsite, websiteId);
             }, function (err) {
                 return err;
             });
     }
 
-    function cascadeDelete(websiteId){
+    function cascadeDelete(websiteId) {
         // Delete the website and its children (pages)
-        return WebsiteModel.findById({_id: websiteId}).select({'pages':1})
+        return WebsiteModel.findById({_id: websiteId}).select({'pages': 1})
             .then(function (website) {
                 var pagesforWebsite = website.pages;
                 return deleteRecursively(pagesforWebsite, websiteId);

@@ -30,8 +30,7 @@ module.exports = function () {
     }
 
     function findUserByCredentials(username, password) {
-        console.log(username);
-        console.log(password);
+
         return UserModel.find({
             username: username,
             password: password
@@ -44,8 +43,7 @@ module.exports = function () {
     }
 
     function updateUser(user, userId) {
-        console.log(user);
-        console.log(userId);
+
         return UserModel
             .update(
                 {
@@ -61,17 +59,17 @@ module.exports = function () {
     }
 
     function deleteRecursively(websitesforUser, userId) {
-        if(websitesforUser.length == 0){
+        if (websitesforUser.length == 0) {
             return UserModel.remove({_id: userId})
                 .then(function (response) {
-                        return response;
+                    return response;
                 }, function (err) {
                     return err;
                 });
         }
         return model.WebsiteModel.cascadeDelete(websitesforUser.shift())
             .then(function (response) {
-                    return deleteRecursively(websitesOfUser, userId);
+                return deleteRecursively(websitesOfUser, userId);
             }, function (err) {
                 return err;
             });

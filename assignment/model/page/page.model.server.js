@@ -2,7 +2,7 @@
  * Created by shohitbajaj on 18/03/17.
  */
 
-module.exports = function() {
+module.exports = function () {
     var mongoose = require("mongoose");
     var PageSchema = require("./page.schema.server.js")();
     var PageModel = mongoose.model('PageModel', PageSchema);
@@ -63,7 +63,7 @@ module.exports = function() {
 
     function deletePage(pageId) {
         return PageModel.findById(pageId).populate('_website').then(function (page) {
-            page._website.pages.splice(page._website.pages.indexOf(pageId),1);
+            page._website.pages.splice(page._website.pages.indexOf(pageId), 1);
             page._website.save();
             return cascadeDelete(pageId);
         }, function (err) {
@@ -72,28 +72,28 @@ module.exports = function() {
     }
 
     function deleteRecursively(widgetsforPage, pageId) {
-        if(widgetsforPage.length == 0){
+        if (widgetsforPage.length == 0) {
             // All widgets of page successfully deleted
             // Delete the page
             return PageModel.remove({_id: pageId})
                 .then(function (response) {
-                        return response;
+                    return response;
                 }, function (err) {
                     return err;
                 });
         }
-        console.log("deleterecursively");
+
         return model.WidgetModel.cascadeDelete(widgetsforPage.shift())
             .then(function (response) {
                 console.log("deleterecursively2");
-                    return deleteRecursively(widgetsforPage, pageId);
+                return deleteRecursively(widgetsforPage, pageId);
             }, function (err) {
                 return err;
             });
     }
 
     function cascadeDelete(pageId) {
-        console.log("inside cascade delete of page");
+
         return PageModel.findById({_id: pageId})
             .then(function (page) {
                 var widgetsforPage = page.widgets;
